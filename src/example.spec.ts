@@ -1,27 +1,44 @@
 import "jasmine";
 
-import { Example } from "./example";
+describe("Example", function () {
+  const functionPromiseMap: { [index: string]: "resolve" | "reject" } = {
+    beforeAll: "resolve",
+    beforeEach: "resolve",
+    afterEach: "resolve",
+    afterAll: "resolve",
+    it: "reject",
+  };
 
-describe("Example", () => {
-  let o: Example;
+  function returnPromise(functionName: string): Promise<void> {
+    const resolveOrRejectString = functionPromiseMap[functionName];
+    return Promise[resolveOrRejectString](functionName);
+  }
+
+  beforeAll(() => {
+    return returnPromise("beforeAll");
+  });
 
   beforeEach(() => {
-    o = new Example();
+    return returnPromise("beforeEach");
   });
 
-  it("sync", () => {
-    expect(o.sync()).toEqual("sync");
+  afterEach(() => {
+    return returnPromise("afterEach");
   });
 
-  it("asyncCallback", (done) => {
-    o.asyncCallback((value) => {
-      expect(value).toEqual("asyncCallback");
-      done();
-    });
+  afterAll(() => {
+    return returnPromise("afterAll");
   });
 
-  it("asyncPromise", async () => {
-    const value = await o.asyncPromise();
-    expect(value).toEqual("asyncPromise");
+  it("passes with synchronous code", () => {
+    expect(true).toBeTruthy();
+  });
+  
+  it("fails with synchronous code", () => {
+    expect(true).toBeFalsy();
+  });
+
+  it("returns a rejected promise", () => {
+    return returnPromise("it");
   });
 });
