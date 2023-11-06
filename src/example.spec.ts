@@ -1,27 +1,21 @@
 import "jasmine";
 
-import { Example } from "./example";
-
 describe("Example", () => {
-  let o: Example;
-
-  beforeEach(() => {
-    o = new Example();
+  it("passes test", () => {
+    expect(true).toBeTruthy();
   });
 
-  it("sync", () => {
-    expect(o.sync()).toEqual("sync");
+  it("logs unhandled promise rejections?", () => {
+    Promise.reject("unhandled");
   });
 
-  it("asyncCallback", (done) => {
-    o.asyncCallback((value) => {
-      expect(value).toEqual("asyncCallback");
-      done();
+  it("logs unhandled promise rejections in async functions?", async () => {
+    Promise.reject("unhandled");
+  });
+
+  it("logs unhandled promises that throw errors?", () => {
+    new Promise(() => {
+      throw new Error("unhandled");
     });
-  });
-
-  it("asyncPromise", async () => {
-    const value = await o.asyncPromise();
-    expect(value).toEqual("asyncPromise");
   });
 });
