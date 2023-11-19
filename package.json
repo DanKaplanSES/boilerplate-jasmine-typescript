@@ -11,19 +11,23 @@
   },
   "devDependencies": {
     "@types/jasmine": "^5.1.2",
+    "@types/lodash": "^4.14.201",
     "@types/node": "^20.8.10",
-    "jasmine": "^5.1.0",
-    "jasmine-console-reporter": "^3.1.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0"
+    "eslint-plugin-prettier": "^5.0.0",
+    "jasmine": "^5.1.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:DanKaplanSES/boilerplate-jasmine-typescript.git"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
